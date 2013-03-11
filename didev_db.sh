@@ -87,8 +87,6 @@ function drush(){
   echo
   echo
   echo Site should now be viewable at: http://${SITE}.vm.didev.co.uk
-  echo Username: admin
-  echo Password: dennis3
   echo
   echo DONE
   echo
