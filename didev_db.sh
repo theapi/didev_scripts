@@ -22,6 +22,12 @@ function dbimport(){
 	  cp /mnt/nfs/Drupal/sql/${SITE}-latest.sql.gz /tmp/${SITE}.sql.gz && gunzip -f /tmp/${SITE}.sql.gz
   fi
 
+  # Clear memcache and APC
+  echo [INFO] Clearing Memcache and APC
+  sudo killall memcached
+  sudo /etc/init.d/memcached start 
+  sudo /etc/init.d/httpd restart > /dev/null
+  
   mysql -u root -e 'DROP DATABASE IF EXISTS drupal_distro_'${SITE}''
   mysql -u root -e 'CREATE DATABASE drupal_distro_'${SITE}''
   echo [INFO] Importing DB
